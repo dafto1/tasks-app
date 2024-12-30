@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" > 
+    <style> 
+    body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+    color: #212529;
+    }
+    #main-div{
+        background-color:rgb(230, 21, 21);
+        width: 70vw ; 
+        display:flex; 
+        justify-content : center ;
+        margin-right:auto ;
+        margin-left:auto ; 
+        margin-top:auto;
+        margin-bottom : auto ; 
+        flex-direction:column ; 
+    } 
+    #todo-form{
+        background-color : rgb(100, 200, 2) 
+
+    } 
+    #todo-form form div { 
+        display:flex; 
+        flex-direction : row;  
+
+        background-color : rgb(230, 21, 21) ; 
+    }
+    </style>
+</head>
+<body>
+    <div id="main-div" style ="background-color=red">
+    <div id = "todo-form" > 
+        <h1>Today's Tasks </h1> 
+        <h3> {{date}} {{month}},{{day}}</h3>
+    <form action="/add" method="post" > 
+        <div> 
+            
+            <input type ="text" name = "title" placeholder="Task name..."><br>
+            <button type ="submit">Add Todo</button>
+        </div>
+    </form>
+</div> 
+    {%for todo in todo_list%} 
+       
+       <p>{{todo.id}} | {{todo.title}} </p>
+       {% if todo.complete == False %} 
+          <span>Not completed</span>
+       {%else %} 
+          <span>Completed</span>
+       {%endif%}
+       <button type="radio"><a href="/update/{{todo.id}}">Update</a></button>
+      <a href="/delete/{{todo.id}}">Delete</a> 
+
+    {%endfor%} 
+</div>
+</body>
+</html>
